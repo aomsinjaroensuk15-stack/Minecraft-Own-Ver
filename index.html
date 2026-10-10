@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craftsman Shaders — Realistic Voxel Lighting Engine</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="gl"></canvas>
+
+<div id="ui">
+  <div class="panel">
+    <h1>⛏️ Craftsman Shaders</h1>
+    <div class="row">
+      <span class="label">Quality</span>
+      <button id="qLow"  class="tier">Low</button>
+      <button id="qMed"  class="tier active">Medium</button>
+      <button id="qUltra" class="tier">Ultra</button>
+    </div>
+    <div class="row">
+      <span class="label">Time</span>
+      <button id="tPause" class="tier">⏸</button>
+      <button id="tSlower" class="tier">−</button>
+      <button id="tFaster" class="tier">＋</button>
+      <button id="tGolden" class="tier" title="Jump to golden hour">🌇</button>
+    </div>
+    <div class="row stats">
+      <span id="fps">— fps</span>
+      <span id="tod">day 1</span>
+    </div>
+  </div>
+  <div class="panel help">
+    <b>Click</b> to lock mouse · <b>WASD</b> move · <b>Space/C</b> up/down · <b>Shift</b> sprint · <b>Esc</b> release
+  </div>
+</div>
+
+<div id="nogl" hidden>
+  <div>
+    <h2>WebGL2 not available 😢</h2>
+    <p>This shader engine needs WebGL2. Try a recent Chrome / Edge / Firefox / Safari.</p>
+  </div>
+</div>
+
+<script src="js/noise.js"></script>
+<script src="js/textures.js"></script>
+<script src="js/world.js"></script>
+<script src="js/shaders.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

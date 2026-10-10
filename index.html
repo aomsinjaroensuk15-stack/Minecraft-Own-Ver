@@ -1027,8 +1027,9 @@ function makeTexture(gl, w, h, internal, format, type, filter) {
 class Engine {
   constructor(canvas) {
     this.canvas = canvas;
-    const gl = canvas.getContext('webgl2', { antialias: false, alpha: false });
-    if (!gl) throw new Error('no webgl2');
+    let gl = canvas.getContext('webgl2', { antialias: false, alpha: false });
+    if (!gl) gl = canvas.getContext('webgl2');
+    if (!gl) throw new Error('no webgl2 — browser/GPU too old. Update Chrome, or try Firefox.');
     this.gl = gl;
     this.hdr = !!gl.getExtension('EXT_color_buffer_float');
     this.NEAR = 0.1; this.FAR = 420;
@@ -1447,6 +1448,7 @@ void main() {
     engine = new Engine(canvas);
   } catch (e) {
     document.getElementById('nogl').hidden = false;
+    document.querySelector('#nogl p').textContent = 'Error: ' + e.message;
     console.error(e);
     return;
   }

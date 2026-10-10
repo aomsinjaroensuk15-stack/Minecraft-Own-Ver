@@ -32,6 +32,8 @@ Requires a WebGL2-capable browser (any recent Chrome / Edge / Firefox / Safari).
 | `Shift` | Sprint |
 | `Esc` | Release mouse |
 
+**On phones/tablets:** touch controls appear automatically — left half of the screen = virtual joystick (push where you land your thumb), right half = drag to look, and the ▲▼ buttons fly up/down. Mobile starts on the Low tier for smooth FPS.
+
 UI panel: quality tier (Low / Medium / Ultra), pause time, time speed (0.25x–8x), jump to golden hour 🌇.
 
 ## Feature list

@@ -375,7 +375,8 @@ void main() {
     // light matrices
     const c = [WORLD.SX / 2, 8, WORLD.SZ / 2];
     const lightEye = [c[0] + pal.sunDir[0] * 140, c[1] + pal.sunDir[1] * 140, c[2] + pal.sunDir[2] * 140];
-    const lightView = M4.lookAt(lightEye, c, [0, 1, 0]).m;
+    const lup = Math.abs(pal.sunDir[1]) > 0.95 ? [0, 0, 1] : [0, 1, 0]; // avoid degenerate lookAt at noon
+    const lightView = M4.lookAt(lightEye, c, lup).m;
     const lightProj = M4.ortho(-72, 72, -72, 72, 1, 320);
     const lightVP = M4.mul(lightProj, lightView);
 
@@ -428,6 +429,7 @@ void main() {
 
       gl.bindFramebuffer(gl.FRAMEBUFFER, b.fbo);
       gl.viewport(0, 0, b.w, b.h);
+      gl.enable(gl.DEPTH_TEST);
       const u = this.prog.water.u;
       gl.useProgram(this.prog.water.prog);
       gl.uniformMatrix4fv(u.uProj, false, proj);
@@ -500,6 +502,7 @@ void main() {
       gl.uniform1i(u.uBloomA, 1);
       gl.uniform1i(u.uBloomB, 2);
       gl.uniform1i(u.uGodray, 3);
+      gl.uniform1f(u.uGodStrength, godOn ? 1 : 0);
       this._bindTex(0, this.fbos.final.color);
       this._bindTex(1, this.fbos.brightA.color);
       this._bindTex(2, this.cfg.bloomLevels > 1 ? this.fbos.brightB.color : this.fbos.brightA.color);
